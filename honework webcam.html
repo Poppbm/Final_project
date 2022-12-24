@@ -1,0 +1,40 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
+
+</head>
+
+    <center>
+        <div id="camera"></div>
+        <input class="button" type="button" value="Take a picture" id="btPic" 
+        onclick="takeSnapShot()" /> 
+    </center>
+<body bgcolor="#959aa0">
+
+<script>
+
+    Webcam.set({
+        width: 500,
+        height: 500,
+        image_format: 'jpeg',
+        jpeg_quality: 100
+    });
+    Webcam.attach('#camera');
+    takeSnapShot = function () {
+        Webcam.snap(function (data_uri) {
+
+            var namefile 
+            namefile = prompt("Enter Name of picture")
+            downloadImage(''+namefile, data_uri);
+        });
+    }
+    downloadImage = function (name, datauri) {
+        var a = document.createElement('a');
+        a.setAttribute('download', name + '.png');
+        a.setAttribute('href', datauri);
+        a.click();
+    }
+
+</script>
+</body>
+</html>
